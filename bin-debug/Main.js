@@ -109,7 +109,7 @@ var Main = (function (_super) {
     };
     Main.prototype.loadResource = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var loadingView, e_1;
+            var loadingView, game, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -126,6 +126,8 @@ var Main = (function (_super) {
                     case 3:
                         _a.sent();
                         this.stage.removeChild(loadingView);
+                        game = new Game();
+                        this.stage.addChild(game);
                         return [3 /*break*/, 5];
                     case 4:
                         e_1 = _a.sent();

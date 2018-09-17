@@ -1,140 +1,70 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json",
+			"keys": "ballute_blue_png,bullte_green_png,bullte_orange_png,bullte_purple_png,bullute_red_png,button_png,cloud1_png,cloud2_png,game_bg_jpg,game_bg_bottom_png,pig_png,sun_png",
 			"name": "preload"
 		}
 	],
 	"resources": [
 		{
-			"url": "assets/CheckBox/checkbox_select_disabled.png",
+			"url": "assets/ballute_blue.png",
 			"type": "image",
-			"name": "checkbox_select_disabled_png"
+			"name": "ballute_blue_png"
 		},
 		{
-			"url": "assets/CheckBox/checkbox_select_down.png",
+			"url": "assets/bullte_green.png",
 			"type": "image",
-			"name": "checkbox_select_down_png"
+			"name": "bullte_green_png"
 		},
 		{
-			"url": "assets/CheckBox/checkbox_select_up.png",
+			"url": "assets/bullte_orange.png",
 			"type": "image",
-			"name": "checkbox_select_up_png"
+			"name": "bullte_orange_png"
 		},
 		{
-			"url": "assets/CheckBox/checkbox_unselect.png",
+			"url": "assets/bullte_purple.png",
 			"type": "image",
-			"name": "checkbox_unselect_png"
+			"name": "bullte_purple_png"
 		},
 		{
-			"url": "assets/ItemRenderer/selected.png",
+			"url": "assets/bullute_red.png",
 			"type": "image",
-			"name": "selected_png"
+			"name": "bullute_red_png"
 		},
 		{
-			"url": "assets/Panel/border.png",
+			"url": "assets/button.png",
 			"type": "image",
-			"name": "border_png"
+			"name": "button_png"
 		},
 		{
-			"url": "assets/Panel/header.png",
+			"url": "assets/cloud1.png",
 			"type": "image",
-			"name": "header_png"
+			"name": "cloud1_png"
 		},
 		{
-			"url": "assets/RadioButton/radiobutton_select_disabled.png",
+			"url": "assets/cloud2.png",
 			"type": "image",
-			"name": "radiobutton_select_disabled_png"
+			"name": "cloud2_png"
 		},
 		{
-			"url": "assets/RadioButton/radiobutton_select_down.png",
+			"url": "assets/game_bg.jpg",
 			"type": "image",
-			"name": "radiobutton_select_down_png"
+			"name": "game_bg_jpg"
 		},
 		{
-			"url": "assets/RadioButton/radiobutton_select_up.png",
+			"url": "assets/game_bg_bottom.png",
 			"type": "image",
-			"name": "radiobutton_select_up_png"
+			"name": "game_bg_bottom_png"
 		},
 		{
-			"url": "assets/RadioButton/radiobutton_unselect.png",
+			"url": "assets/pig.png",
 			"type": "image",
-			"name": "radiobutton_unselect_png"
+			"name": "pig_png"
 		},
 		{
-			"url": "assets/ScrollBar/roundthumb.png",
+			"url": "assets/sun.png",
 			"type": "image",
-			"name": "roundthumb_png"
-		},
-		{
-			"url": "assets/Slider/thumb.png",
-			"type": "image",
-			"name": "thumb_png"
-		},
-		{
-			"url": "assets/Slider/track.png",
-			"type": "image",
-			"name": "track_png"
-		},
-		{
-			"url": "assets/Slider/tracklight.png",
-			"type": "image",
-			"name": "tracklight_png"
-		},
-		{
-			"url": "assets/ToggleSwitch/handle.png",
-			"type": "image",
-			"name": "handle_png"
-		},
-		{
-			"url": "assets/ToggleSwitch/off.png",
-			"type": "image",
-			"name": "off_png"
-		},
-		{
-			"url": "assets/ToggleSwitch/on.png",
-			"type": "image",
-			"name": "on_png"
-		},
-		{
-			"url": "assets/Button/button_down.png",
-			"type": "image",
-			"name": "button_down_png"
-		},
-		{
-			"url": "assets/Button/button_up.png",
-			"type": "image",
-			"name": "button_up_png"
-		},
-		{
-			"url": "assets/ProgressBar/thumb_pb.png",
-			"type": "image",
-			"name": "thumb_pb_png"
-		},
-		{
-			"url": "assets/ProgressBar/track_pb.png",
-			"type": "image",
-			"name": "track_pb_png"
-		},
-		{
-			"url": "assets/ScrollBar/track_sb.png",
-			"type": "image",
-			"name": "track_sb_png"
-		},
-		{
-			"url": "assets/bg.jpg",
-			"type": "image",
-			"name": "bg_jpg"
-		},
-		{
-			"url": "assets/egret_icon.png",
-			"type": "image",
-			"name": "egret_icon_png"
-		},
-		{
-			"name": "description_json",
-			"type": "json",
-			"url": "config/description.json"
+			"name": "sun_png"
 		}
 	]
 }

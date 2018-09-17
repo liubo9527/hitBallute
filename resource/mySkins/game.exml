@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="game" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="game_bg_jpg" x="0" y="0"/>
+	<e:Image id="sun" source="sun_png" x="248.64" y="12.12"/>
+	<e:Image id="cloud1" source="cloud1_png" x="64.03" y="313.99"/>
+	<e:Image id="cloud2" source="cloud2_png" x="434.03" y="318.83"/>
+	<e:Image id="hreo" source="pig_png" x="476.57" y="381.33"/>
+	<e:Image source="game_bg_bottom_png" x="1" y="1163"/>
+	<e:Image id="up" source="button_png" x="375" y="1278" alpha="0.6" anchorOffsetX="56" anchorOffsetY="56" width="112"/>
+	<e:Image id="left" source="button_png" x="253" y="1278" rotation="-90" alpha="0.6" anchorOffsetX="56" anchorOffsetY="56"/>
+	<e:Image id="right" source="button_png" x="497" y="1278" rotation="90" alpha="0.6" anchorOffsetX="56" anchorOffsetY="56"/>
+</e:Skin>
