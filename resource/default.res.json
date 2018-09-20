@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "ballute_blue_png,bullte_green_png,bullte_orange_png,bullte_purple_png,bullute_red_png,button_png,cloud1_png,cloud2_png,game_bg_jpg,game_bg_bottom_png,pig_png,sun_png",
+			"keys": "ballute_blue_png,bullte_green_png,bullte_orange_png,bullte_purple_png,bullute_red_png,button_png,cloud1_png,cloud2_png,game_bg_jpg,game_bg_bottom_png,pig_png,sun_png,wall_png",
 			"name": "preload"
 		}
 	],
@@ -65,6 +65,11 @@
 			"url": "assets/sun.png",
 			"type": "image",
 			"name": "sun_png"
+		},
+		{
+			"name": "wall_png",
+			"type": "image",
+			"url": "assets/wall.png"
 		}
 	]
 }

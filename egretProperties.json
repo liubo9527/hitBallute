@@ -26,6 +26,10 @@
     },
     {
       "name": "promise"
+    },
+    {
+      "name": "physics",
+      "path": "./libs/physics"
     }
   ]
 }
