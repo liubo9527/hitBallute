@@ -3,11 +3,10 @@ class Game extends eui.Component {
 	material1;
 	material2;
 	cloud: egret.tween.TweenGroup;
-	hero: eui.Image;
+	hero: p2.Body;
 	leftControl: eui.Image;
 	rightControl: eui.Image;
 	upControl: eui.Image;
-	heroPig;
 	public constructor() {
 		super();
 		this.skinName = "game";
@@ -86,21 +85,24 @@ class Game extends eui.Component {
 			return false;
 		},this);
 
-		this.createFillBall(world, this, 5, 1, 50, "wall_png", 375, 600);
+		this.hero = new Role(this, 375, 600, 1, 1);
+		world.addBody(this.hero);
+		this.hero.shapes[0].material = this.material2;
+	
 		//按键处理
 		this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
 			var gravity = p2.vec2.fromValues(0, 50);
-			this.heroPig.applyForce(gravity, [0, 0]);
+			this.hero.applyForce(gravity, [0, 0]);
 		}, this);
 		this.leftControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
 			var gravity = p2.vec2.fromValues(-50, 0);
-			this.heroPig.applyForce(gravity, [0, 0]);
-			this.hero.scaleX = 1;
+			this.hero.applyForce(gravity, [0, 0]);
+			this.hero.displays[0].scaleX = 1;
 		}, this);
 		this.rightControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
 			var gravity = p2.vec2.fromValues(50,0);
-			this.heroPig.applyForce(gravity, [0, 0]);
-			this.hero.scaleX = -1;
+			this.hero.applyForce(gravity, [0, 0]);
+			this.hero.displays[0].scaleX = -1;
 		}, this);	
 	}
 	
@@ -116,6 +118,7 @@ class Game extends eui.Component {
 			}
 		);
 		p2body.id = id;
+		console.log("位置：", p2body.position);
 		world.addBody(p2body);
 		var rectShape:p2.Box = new p2.Box({width:PhysicsTool.convertToPhysicsLength(w), height: PhysicsTool.convertToPhysicsLength(h)});
 		p2body.addShape(rectShape);
@@ -127,33 +130,6 @@ class Game extends eui.Component {
 		p2body.displays = [display];
 		container.addChild(display);
 		rectShape.material = this.material1;
-		return p2body;
-	}
-
-	//创建小球
-	private createFillBall(world:p2.World, container:egret.DisplayObjectContainer, id:number, vx:number, r:number, resid:string, posX:number, posY:number){
-		var p2body:p2.Body = new p2.Body(
-			{
-				mass:1,
-				// fixedRotation: true,
-				position: PhysicsTool.convertToPhysicsPos(posX, posY),
-				// angularVelocity: vx
-			}
-		);
-		p2body.id = id;
-		console.log("位置：", p2body.position);
-		world.addBody(p2body);
-		var circleShape:p2.Circle = new p2.Circle({radius:PhysicsTool.convertToPhysicsLength(r)});
-		circleShape.material = this.material2;
-		p2body.addShape(circleShape);
-		var display = this.hero;
-		display.width = r*2;
-		display.height = r*2;
-		display.anchorOffsetX = r;
-		display.anchorOffsetY = r;
-		p2body.displays = [display];
-		//container.addChild(display);
-		this.heroPig = p2body;
 		return p2body;
 	}
 

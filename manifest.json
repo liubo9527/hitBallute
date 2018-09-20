@@ -16,6 +16,7 @@
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
+		"bin-debug/game/Config.js",
 		"bin-debug/game/Game.js",
 		"bin-debug/game/Role.js",
 		"bin-debug/tool/PhysicsTool.js"

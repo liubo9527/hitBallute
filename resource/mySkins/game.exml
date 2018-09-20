@@ -32,7 +32,7 @@
 					</tween:props>
 				</tween:To>
 			</tween:TweenItem>
-			<tween:TweenItem target="{sun}">
+			<tween:TweenItem target="{hreoPIg}">
 				<tween:Set/>
 				<tween:To duration="2000">
 					<tween:props>
@@ -48,10 +48,9 @@
 		</tween:TweenGroup>
 	</w:Declarations>
 	<e:Image source="game_bg_jpg" x="0" y="0"/>
-	<e:Image id="sun" source="sun_png" x="362.03" y="110" anchorOffsetX="106" anchorOffsetY="110"/>
+	<e:Image id="hreoPIg" source="sun_png" x="362.03" y="110" anchorOffsetX="106" anchorOffsetY="110"/>
 	<e:Image id="cloud1" source="cloud1_png" x="64.03" y="313.99"/>
 	<e:Image id="cloud2" source="cloud2_png" x="434.03" y="318.83"/>
-	<e:Image id="hero" source="pig_png" x="134.03" y="1148"/>
 	<e:Image source="game_bg_bottom_png" x="1" y="1163"/>
 	<e:Image id="upControl" source="button_png" x="375" y="1278" alpha="0.6" anchorOffsetX="56" anchorOffsetY="56" width="112"/>
 	<e:Image id="leftControl" source="button_png" x="253" y="1278" rotation="-90" alpha="0.6" anchorOffsetX="56" anchorOffsetY="56"/>

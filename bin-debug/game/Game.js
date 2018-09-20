@@ -81,21 +81,23 @@ var Game = (function (_super) {
             }
             return false;
         }, this);
-        this.createFillBall(world, this, 5, 1, 50, "wall_png", 375, 600);
+        this.hero = new Role(this, 375, 600, 1, 1);
+        world.addBody(this.hero);
+        this.hero.shapes[0].material = this.material2;
         //按键处理
         this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
             var gravity = p2.vec2.fromValues(0, 50);
-            _this.heroPig.applyForce(gravity, [0, 0]);
+            _this.hero.applyForce(gravity, [0, 0]);
         }, this);
         this.leftControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
             var gravity = p2.vec2.fromValues(-50, 0);
-            _this.heroPig.applyForce(gravity, [0, 0]);
-            _this.hero.scaleX = 1;
+            _this.hero.applyForce(gravity, [0, 0]);
+            _this.hero.displays[0].scaleX = 1;
         }, this);
         this.rightControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
             var gravity = p2.vec2.fromValues(50, 0);
-            _this.heroPig.applyForce(gravity, [0, 0]);
-            _this.hero.scaleX = -1;
+            _this.hero.applyForce(gravity, [0, 0]);
+            _this.hero.displays[0].scaleX = -1;
         }, this);
     };
     //创建墙面
@@ -108,6 +110,7 @@ var Game = (function (_super) {
             velocity: [vx, 0]
         });
         p2body.id = id;
+        console.log("位置：", p2body.position);
         world.addBody(p2body);
         var rectShape = new p2.Box({ width: PhysicsTool.convertToPhysicsLength(w), height: PhysicsTool.convertToPhysicsLength(h) });
         p2body.addShape(rectShape);
@@ -119,29 +122,6 @@ var Game = (function (_super) {
         p2body.displays = [display];
         container.addChild(display);
         rectShape.material = this.material1;
-        return p2body;
-    };
-    //创建小球
-    Game.prototype.createFillBall = function (world, container, id, vx, r, resid, posX, posY) {
-        var p2body = new p2.Body({
-            mass: 1,
-            // fixedRotation: true,
-            position: PhysicsTool.convertToPhysicsPos(posX, posY),
-        });
-        p2body.id = id;
-        console.log("位置：", p2body.position);
-        world.addBody(p2body);
-        var circleShape = new p2.Circle({ radius: PhysicsTool.convertToPhysicsLength(r) });
-        circleShape.material = this.material2;
-        p2body.addShape(circleShape);
-        var display = this.hero;
-        display.width = r * 2;
-        display.height = r * 2;
-        display.anchorOffsetX = r;
-        display.anchorOffsetY = r;
-        p2body.displays = [display];
-        //container.addChild(display);
-        this.heroPig = p2body;
         return p2body;
     };
     /**
