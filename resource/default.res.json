@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "ballute_blue_png,bullte_green_png,bullte_orange_png,bullte_purple_png,bullute_red_png,button_png,cloud1_png,cloud2_png,game_bg_jpg,game_bg_bottom_png,pig_png,sun_png,wall_png",
+			"keys": "ballute_blue_png,bullte_green_png,bullte_orange_png,bullte_purple_png,bullute_red_png,button_png,cloud1_png,cloud2_png,game_bg_jpg,game_bg_bottom_png,pig_png,sun_png,wall_png,enemy1_png,enemy2_png,enemy3_png,enemy4_png,role_png",
 			"name": "preload"
 		}
 	],
@@ -70,6 +70,31 @@
 			"name": "wall_png",
 			"type": "image",
 			"url": "assets/wall.png"
+		},
+		{
+			"name": "enemy1_png",
+			"type": "image",
+			"url": "assets/enemy1.png"
+		},
+		{
+			"name": "enemy2_png",
+			"type": "image",
+			"url": "assets/enemy2.png"
+		},
+		{
+			"name": "enemy3_png",
+			"type": "image",
+			"url": "assets/enemy3.png"
+		},
+		{
+			"name": "enemy4_png",
+			"type": "image",
+			"url": "assets/enemy4.png"
+		},
+		{
+			"name": "role_png",
+			"type": "image",
+			"url": "assets/role.png"
 		}
 	]
 }
