@@ -13,7 +13,7 @@ var Game = (function (_super) {
     function Game() {
         var _this = _super.call(this) || this;
         _this.time = 0;
-        _this.skinName = "game";
+        _this.skinName = "gameComponent";
         return _this;
     }
     Game.prototype.childrenCreated = function () {
@@ -39,11 +39,11 @@ var Game = (function (_super) {
         var height = 1334;
         var factor = 50;
         var world = new p2.World({
-            gravity: [0, -1]
+            gravity: [0, -0.5]
         });
         var iceSteelContactMaterial = new p2.ContactMaterial(this.material1, this.material2);
-        iceSteelContactMaterial.friction = 0;
-        iceSteelContactMaterial.restitution = 1.1;
+        iceSteelContactMaterial.friction = 1;
+        iceSteelContactMaterial.restitution = 0.1;
         world.addContactMaterial(iceSteelContactMaterial);
         //创建墙壁left
         this.createGround(world, this, 1, 0, 10, 1334, "wall_png", 5, 667); //left
@@ -84,18 +84,21 @@ var Game = (function (_super) {
         this.hero = new Role(this, 375, 600, 1, 1);
         world.addBody(this.hero);
         this.hero.shapes[0].material = this.material2;
+        //增加敌人
+        var enemy = new Role(this, 200, 600, 0, 1);
+        world.addBody(enemy);
         //按键处理
         this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
             var gravity = p2.vec2.fromValues(0, 50);
             _this.hero.applyForce(gravity, [0, 0]);
         }, this);
         this.leftControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
-            var gravity = p2.vec2.fromValues(-50, 0);
+            var gravity = p2.vec2.fromValues(-100, 0);
             _this.hero.applyForce(gravity, [0, 0]);
             _this.hero.displays[0].scaleX = 1;
         }, this);
         this.rightControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
-            var gravity = p2.vec2.fromValues(50, 0);
+            var gravity = p2.vec2.fromValues(100, 0);
             _this.hero.applyForce(gravity, [0, 0]);
             _this.hero.displays[0].scaleX = -1;
         }, this);
@@ -146,3 +149,4 @@ var Game = (function (_super) {
     return Game;
 }(eui.Component));
 __reflect(Game.prototype, "Game");
+//# sourceMappingURL=Game.js.map

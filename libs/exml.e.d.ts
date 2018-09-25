@@ -1,2 +1,2 @@
-declare class game extends eui.Skin{
+declare class gameComponent extends eui.Skin{
 }

@@ -9,7 +9,7 @@ class Game extends eui.Component {
 	upControl: eui.Image;
 	public constructor() {
 		super();
-		this.skinName = "game";
+		this.skinName = "gameComponent";
 	}
 	childrenCreated(){
 		super.childrenCreated();
@@ -40,11 +40,11 @@ class Game extends eui.Component {
 		var height = 1334;
 		var factor: number = 50;
 		var world:p2.World = new p2.World({
-			 gravity : [0, -1]
+			 gravity : [0, -0.5]
 		});
 		var iceSteelContactMaterial = new p2.ContactMaterial(this.material1, this.material2);
-		iceSteelContactMaterial.friction = 0;
-		iceSteelContactMaterial.restitution = 1.1;
+		iceSteelContactMaterial.friction = 1;
+		iceSteelContactMaterial.restitution = 0.1;
 		world.addContactMaterial(iceSteelContactMaterial);
 
 		//创建墙壁left
@@ -88,6 +88,9 @@ class Game extends eui.Component {
 		this.hero = new Role(this, 375, 600, 1, 1);
 		world.addBody(this.hero);
 		this.hero.shapes[0].material = this.material2;
+		//增加敌人
+		var enemy = new Role(this, 200, 600, 0, 1);
+		world.addBody(enemy);
 	
 		//按键处理
 		this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
@@ -95,12 +98,12 @@ class Game extends eui.Component {
 			this.hero.applyForce(gravity, [0, 0]);
 		}, this);
 		this.leftControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
-			var gravity = p2.vec2.fromValues(-50, 0);
+			var gravity = p2.vec2.fromValues(-100, 0);
 			this.hero.applyForce(gravity, [0, 0]);
 			this.hero.displays[0].scaleX = 1;
 		}, this);
 		this.rightControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
-			var gravity = p2.vec2.fromValues(50,0);
+			var gravity = p2.vec2.fromValues(100,0);
 			this.hero.applyForce(gravity, [0, 0]);
 			this.hero.displays[0].scaleX = -1;
 		}, this);	

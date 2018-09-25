@@ -5,7 +5,7 @@ class Role extends p2.Body{
 	group;//游戏的碰撞group
 	public constructor(container:egret.DisplayObjectContainer, posX:number, posY:number, type:number, balloonCount:number) {
 		super({
-			mass:1,
+			mass:type == 1?1:1,
 			fixedRotation:true
 		});
 		this.roleType = type;
@@ -41,5 +41,21 @@ class Role extends p2.Body{
 		this.container.addChild(display);
 		display.anchorOffsetX = display.width/2;
 		display.anchorOffsetY = display.height/2;
+		if(this.roleType == 0){
+			setInterval(()=>{
+				if(this.velocity[1] < 0){
+					var forceY = Math.random()*50 +50; 
+					var gravity = p2.vec2.fromValues(0,  forceY);
+					this.applyForce(gravity, [0, 0]); 
+				}
+			}, 2000)
+		}
+	}
+
+	autoAttack(){
+		var forceX = Math.random()*3 - 1.5;
+		var forceY = Math.random()*3 - 1.5; 
+		var gravity = p2.vec2.fromValues(forceX, forceY);
+		this.applyForce(gravity, [0, 0]); 
 	}
 }

@@ -15,3 +15,4 @@ var PhysicsTool = (function () {
     return PhysicsTool;
 }());
 __reflect(PhysicsTool.prototype, "PhysicsTool");
+//# sourceMappingURL=PhysicsTool.js.map

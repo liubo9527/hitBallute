@@ -12,7 +12,7 @@ var Role = (function (_super) {
     __extends(Role, _super);
     function Role(container, posX, posY, type, balloonCount) {
         var _this = _super.call(this, {
-            mass: 1,
+            mass: type == 1 ? 1 : 1,
             fixedRotation: true
         }) || this;
         _this.roleType = type;
@@ -31,6 +31,7 @@ var Role = (function (_super) {
     };
     //创建形状
     Role.prototype.createShape = function () {
+        var _this = this;
         var displayName;
         if (this.roleType == 0) {
             displayName = "enemy1_png";
@@ -50,7 +51,23 @@ var Role = (function (_super) {
         this.container.addChild(display);
         display.anchorOffsetX = display.width / 2;
         display.anchorOffsetY = display.height / 2;
+        if (this.roleType == 0) {
+            setInterval(function () {
+                if (_this.velocity[1] < 0) {
+                    var forceY = Math.random() * 50 + 50;
+                    var gravity = p2.vec2.fromValues(0, forceY);
+                    _this.applyForce(gravity, [0, 0]);
+                }
+            }, 2000);
+        }
+    };
+    Role.prototype.autoAttack = function () {
+        var forceX = Math.random() * 3 - 1.5;
+        var forceY = Math.random() * 3 - 1.5;
+        var gravity = p2.vec2.fromValues(forceX, forceY);
+        this.applyForce(gravity, [0, 0]);
     };
     return Role;
 }(p2.Body));
 __reflect(Role.prototype, "Role");
+//# sourceMappingURL=Role.js.map
