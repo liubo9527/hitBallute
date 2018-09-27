@@ -29,7 +29,6 @@
 
 class Main extends eui.UILayer {
 
-
     protected createChildren(): void {
         super.createChildren();
 
@@ -68,6 +67,7 @@ class Main extends eui.UILayer {
             await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
             this.stage.removeChild(loadingView);
+            GameConst.stage = this.stage;
             var game:Game = new Game();
             this.stage.addChild(game);
         }

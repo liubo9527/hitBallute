@@ -27,14 +27,14 @@ class Role extends p2.Body{
 	private createShape(){
 		var displayName;
 		if(this.roleType == 0){
-			var nameRandomIndex = Math.floor(Math.random()*5 + 1);
-			displayName = "enemy" + nameRandomIndex +"_png";
+			displayName = "enemy_png";
 			this.group = config.gameGroup.ENEMY;
 		}else if(this.roleType == 1){
 			displayName = "role_png";
 			this.group = config.gameGroup.PLAYER;
 		}
 		var display = this.createBitmapByName(displayName);
+		console.log(display.height);
 		var p2Shape:p2.Box = new p2.Box({
 			width: PhysicsTool.convertToPhysicsLength(display.width),
 			height: PhysicsTool.convertToPhysicsLength(display.height)
@@ -49,7 +49,7 @@ class Role extends p2.Body{
 				if(this.velocity[1] < 0){
 					var forceY = Math.random()*50 +50; 
 					var gravity = p2.vec2.fromValues(0,  forceY);
-					this.applyForce(gravity, [0, 0]); 
+					//this.applyForce(gravity, [0, 0]); 
 				}
 			}, 2000)
 		}

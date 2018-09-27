@@ -127,6 +127,7 @@ var Main = (function (_super) {
                     case 3:
                         _a.sent();
                         this.stage.removeChild(loadingView);
+                        GameConst.stage = this.stage;
                         game = new Game();
                         this.stage.addChild(game);
                         return [3 /*break*/, 5];

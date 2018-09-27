@@ -30,8 +30,6 @@ var Game = (function (_super) {
     };
     Game.prototype.worldInit = function () {
         var _this = this;
-        //云层活动
-        this.playAnimation(this.cloud, true);
         this.material1 = new p2.Material(1);
         this.material2 = new p2.Material(2);
         //物理世界和实际像素之间的转换系数
@@ -39,17 +37,22 @@ var Game = (function (_super) {
         var height = 1334;
         var factor = 50;
         var world = new p2.World({
-            gravity: [0, -0.5]
+            gravity: [0, -1]
         });
         var iceSteelContactMaterial = new p2.ContactMaterial(this.material1, this.material2);
         iceSteelContactMaterial.friction = 1;
         iceSteelContactMaterial.restitution = 0.1;
         world.addContactMaterial(iceSteelContactMaterial);
-        //创建墙壁left
-        this.createGround(world, this, 1, 0, 10, 1334, "wall_png", 5, 667); //left
-        this.createGround(world, this, 2, 0, 750, 10, "wall_png", 375, 1329); //bottom
-        this.createGround(world, this, 3, 0, 10, 1334, "wall_png", 745, 667); //right
-        this.createGround(world, this, 4, 0, 750, 10, "wall_png", 375, 5); //top
+        //创建墙壁top
+        this.createGround(world, this.bgGroup, 1, 0, 1334, 1, "", 667, 0); //top
+        //创建墙壁bottom
+        this.createGround(world, this.bgGroup, 1, 0, 1334, 1, "", 667, 800); //top
+        //创建左边台阶
+        this.createGround(world, this.bgGroup, 2, 0, 302, 29, "step1_png", 145, 675); //left
+        //创建右边台阶
+        this.createGround(world, this.bgGroup, 3, 0, 302, 29, "step1_png", 1183, 675); //bottom
+        //创建空中台阶
+        //this.createGround(world, this, 4, 0, 10, 1334, "step2_png", 745, 667);//right
         egret.startTick(function (dt) {
             var now = dt;
             var time = _this.time;
@@ -81,27 +84,40 @@ var Game = (function (_super) {
             }
             return false;
         }, this);
-        this.hero = new Role(this, 375, 600, 1, 1);
+        this.hero = new Role(this.collisionGroup, 375, 600, 1, 1);
         world.addBody(this.hero);
         this.hero.shapes[0].material = this.material2;
         //增加敌人
-        var enemy = new Role(this, 200, 600, 0, 1);
+        var enemy = new Role(this.collisionGroup, 200, 600, 0, 1);
         world.addBody(enemy);
         //按键处理
-        this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
-            var gravity = p2.vec2.fromValues(0, 50);
-            _this.hero.applyForce(gravity, [0, 0]);
-        }, this);
-        this.leftControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
-            var gravity = p2.vec2.fromValues(-100, 0);
-            _this.hero.applyForce(gravity, [0, 0]);
-            _this.hero.displays[0].scaleX = 1;
-        }, this);
-        this.rightControl.addEventListener(egret.TouchEvent.TOUCH_TAP, function (event) {
-            var gravity = p2.vec2.fromValues(100, 0);
-            _this.hero.applyForce(gravity, [0, 0]);
-            _this.hero.displays[0].scaleX = -1;
-        }, this);
+        // this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
+        // 	var gravity = p2.vec2.fromValues(0, 200);
+        // 	this.hero.applyForce(gravity, [0, 0]);
+        // }, this);
+        //虚拟摇杆
+        this.vj = new VirtualJoystick();
+        this.vj.x = 1080;
+        this.vj.y = 600;
+        this.addChild(this.vj);
+        this.vj.addEventListener("vj_start", this.onStart, this);
+        this.vj.addEventListener("vj_move", this.onChange, this);
+        this.vj.addEventListener("vj_end", this.onEnd, this);
+        this.vj.start();
+    };
+    //摇杆启动，人物开始根据摇杆移动
+    Game.prototype.onStart = function () {
+        // this.addEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
+    };
+    //触摸摇杆的角度改变，人物的移动速度方向也随之改变
+    Game.prototype.onChange = function (e) {
+        // var angle = e.data;
+        // this.speedX = Math.cos(angle)*this.speed;
+        // this.speedY = Math.sin(angle)*this.speed;
+    };
+    //停止摇杆，人物停止移动
+    Game.prototype.onEnd = function () {
+        // this.removeEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
     };
     //创建墙面
     Game.prototype.createGround = function (world, container, id, vx, w, h, resid, posX, posY) {
