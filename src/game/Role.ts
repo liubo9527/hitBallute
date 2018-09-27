@@ -3,11 +3,13 @@ class Role extends p2.Body{
 	roleType:number;//角色类型 0 敌人，1是玩家
 	container:egret.DisplayObjectContainer;
 	group;//游戏的碰撞group
-	public constructor(container:egret.DisplayObjectContainer, posX:number, posY:number, type:number, balloonCount:number) {
+	hero;
+	public constructor(container:egret.DisplayObjectContainer, posX:number, posY:number, type:number, balloonCount:number, hero:Role = null) {
 		super({
 			mass:type == 1?1:1,
 			fixedRotation:true
 		});
+		this.hero = hero;
 		this.roleType = type;
 		this.container = container;
 		this.balloonCount = balloonCount;
@@ -25,7 +27,8 @@ class Role extends p2.Body{
 	private createShape(){
 		var displayName;
 		if(this.roleType == 0){
-			displayName = "enemy1_png";
+			var nameRandomIndex = Math.floor(Math.random()*5 + 1);
+			displayName = "enemy" + nameRandomIndex +"_png";
 			this.group = config.gameGroup.ENEMY;
 		}else if(this.roleType == 1){
 			displayName = "role_png";
@@ -56,6 +59,8 @@ class Role extends p2.Body{
 		var forceX = Math.random()*3 - 1.5;
 		var forceY = Math.random()*3 - 1.5; 
 		var gravity = p2.vec2.fromValues(forceX, forceY);
-		this.applyForce(gravity, [0, 0]); 
+		this.applyForce(gravity, [0, 0]);
+
+
 	}
 }

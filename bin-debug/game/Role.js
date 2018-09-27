@@ -10,11 +10,13 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 var Role = (function (_super) {
     __extends(Role, _super);
-    function Role(container, posX, posY, type, balloonCount) {
+    function Role(container, posX, posY, type, balloonCount, hero) {
+        if (hero === void 0) { hero = null; }
         var _this = _super.call(this, {
             mass: type == 1 ? 1 : 1,
             fixedRotation: true
         }) || this;
+        _this.hero = hero;
         _this.roleType = type;
         _this.container = container;
         _this.balloonCount = balloonCount;
@@ -34,7 +36,8 @@ var Role = (function (_super) {
         var _this = this;
         var displayName;
         if (this.roleType == 0) {
-            displayName = "enemy1_png";
+            var nameRandomIndex = Math.floor(Math.random() * 5 + 1);
+            displayName = "enemy" + nameRandomIndex + "_png";
             this.group = config.gameGroup.ENEMY;
         }
         else if (this.roleType == 1) {
