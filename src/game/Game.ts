@@ -33,7 +33,7 @@ class Game extends eui.Component {
 		this.material1 = new p2.Material(1);
 		this.material2 = new p2.Material(2);
 	
-		//物理世界和实际像素之间的转换系数
+		//物理世界与实际像素之间的转换系数
 		var width = 750;
 		var height = 1334;
 		var factor: number = 50;
@@ -73,18 +73,20 @@ class Game extends eui.Component {
             var l = world.bodies.length;
             for (var i: number = 0; i < l; i++) {
                 var boxBody: p2.Body = world.bodies[i];
-                var box: egret.DisplayObject = boxBody.displays[0];
-                if (box) {
-                    box.x = boxBody.position[0] * factor;
-                    box.y = stageHeight - boxBody.position[1] * factor;
-                    box.rotation = 360 - (boxBody.angle + boxBody.shapes[0].angle) * 180 / Math.PI;
-                    if (boxBody.sleepState == p2.Body.SLEEPING) {
-                        box.alpha = 0.5;
-                    }
-                    else {
-                        box.alpha = 1;
-                    }
-                }
+				if(boxBody.displays){
+					var box: egret.DisplayObject = boxBody.displays[0];
+					if (box) {
+						box.x = boxBody.position[0] * factor;
+						box.y = stageHeight - boxBody.position[1] * factor;
+						box.rotation = 360 - (boxBody.angle + boxBody.shapes[0].angle) * 180 / Math.PI;
+						if (boxBody.sleepState == p2.Body.SLEEPING) {
+							box.alpha = 0.5;
+						}
+						else {
+							box.alpha = 1;
+						}
+					}
+				}
             }
 			return false;
 		},this);
@@ -105,9 +107,6 @@ class Game extends eui.Component {
 
 		//虚拟摇杆
 		this.vj = new VirtualJoystick();
-		this.vj.x = 1080;
-		this.vj.y = 600;
-		this.addChild(this.vj);
 		this.vj.addEventListener("vj_start",this.onStart, this);
 		this.vj.addEventListener("vj_move", this.onChange, this);
 		this.vj.addEventListener("vj_end", this.onEnd, this);
@@ -121,9 +120,11 @@ class Game extends eui.Component {
 
 	//触摸摇杆的角度改变，人物的移动速度方向也随之改变
 	private onChange(e:egret.Event){
-		// var angle = e.data;
-		// this.speedX = Math.cos(angle)*this.speed;
-		// this.speedY = Math.sin(angle)*this.speed;
+		var angle = e.data;
+		var speedX = Math.cos(angle)*10;
+		var speedY = Math.sin(angle)*10;
+		var gravity = p2.vec2.fromValues(speedX, -speedY);
+		this.hero.applyForce(gravity, [0, 0]);
 	}
 
 	//停止摇杆，人物停止移动
@@ -147,13 +148,15 @@ class Game extends eui.Component {
 		world.addBody(p2body);
 		var rectShape:p2.Box = new p2.Box({width:PhysicsTool.convertToPhysicsLength(w), height: PhysicsTool.convertToPhysicsLength(h)});
 		p2body.addShape(rectShape);
-		var display = this.createBitmapByName(resid);
-		display.width = w;
-		display.height = h;
-		display.anchorOffsetX = w/2;
-		display.anchorOffsetY = h/2;
-		p2body.displays = [display];
-		container.addChild(display);
+		if(!!resid){
+			var display = this.createBitmapByName(resid);
+			display.width = w;
+			display.height = h;
+			display.anchorOffsetX = w/2;
+			display.anchorOffsetY = h/2;
+			p2body.displays = [display];
+			container.addChild(display);
+		}
 		rectShape.material = this.material1;
 		return p2body;
 	}

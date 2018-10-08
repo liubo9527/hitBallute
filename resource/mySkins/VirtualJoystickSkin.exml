@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="VirtualJoystickSkin" width="242" height="242" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="circle" source="circle_png" x="0" y="0"/>
-	<e:Image id="ball" source="ball_png" x="52" y="52"/>
+	<e:Image id="ball" source="ball_png" x="121" y="121" anchorOffsetX="69" anchorOffsetY="69"/>
 </e:Skin>
