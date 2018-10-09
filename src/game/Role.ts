@@ -1,4 +1,4 @@
-class Role extends p2.Body{
+class Role extends p2.Body {
 	balloonCount:number;//默认气球书
 	roleType:number;//角色类型 0 敌人，1是玩家
 	container:egret.DisplayObjectContainer;
@@ -55,12 +55,21 @@ class Role extends p2.Body{
 		}
 	}
 
+	//frame事件
+	onEnterFrame(dt){
+		if(this.velocity[0] > 0){
+			this.displays[0].scaleX = -1;
+		}else if(this.velocity[0] < 0){
+			this.displays[0].scaleX = 1;
+		}else{
+			//doNoting
+		}
+	}
+
 	autoAttack(){
 		var forceX = Math.random()*3 - 1.5;
 		var forceY = Math.random()*3 - 1.5; 
 		var gravity = p2.vec2.fromValues(forceX, forceY);
 		this.applyForce(gravity, [0, 0]);
-
-
 	}
 }

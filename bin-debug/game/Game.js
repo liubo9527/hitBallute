@@ -45,14 +45,20 @@ var Game = (function (_super) {
         world.addContactMaterial(iceSteelContactMaterial);
         //创建墙壁top
         this.createGround(world, this.bgGroup, 1, 0, 1334, 1, "", 667, 0); //top
-        //创建墙壁bottom
-        this.createGround(world, this.bgGroup, 1, 0, 1334, 1, "", 667, 800); //top
         //创建左边台阶
-        this.createGround(world, this.bgGroup, 2, 0, 302, 29, "step1_png", 145, 675); //left
+        this.createGround(world, this.bgGroup, 2, 0, 302, 29, "step1_png", 145, 675);
         //创建右边台阶
-        this.createGround(world, this.bgGroup, 3, 0, 302, 29, "step1_png", 1183, 675); //bottom
+        this.createGround(world, this.bgGroup, 3, 0, 302, 29, "step1_png", 1183, 675);
         //创建空中台阶
-        //this.createGround(world, this, 4, 0, 10, 1334, "step2_png", 745, 667);//right
+        this.createGround(world, this, 4, 0, 121, 29, "step2_png", 667, 250);
+        //创建空中台阶
+        this.createGround(world, this, 5, 0, 121, 29, "step2_png", 467, 400);
+        //创建空中台阶
+        this.createGround(world, this, 6, 0, 121, 29, "step2_png", 867, 400);
+        //创建left right bottom墙壁
+        this.createGround(world, this.bgGroup, 11, 0, 1, 750, "", 0, 375);
+        this.createGround(world, this.bgGroup, 12, 0, 1, 750, "", 1334, 375);
+        this.createGround(world, this.bgGroup, 13, 0, 1500, 1, "", 667, 730);
         egret.startTick(function (dt) {
             var now = dt;
             var time = _this.time;
@@ -82,6 +88,11 @@ var Game = (function (_super) {
                             box.alpha = 1;
                         }
                     }
+                    if (boxBody.type != p2.Body.STATIC) {
+                        if (boxBody instanceof Role) {
+                            boxBody.onEnterFrame(dt);
+                        }
+                    }
                 }
             }
             return false;
@@ -92,11 +103,6 @@ var Game = (function (_super) {
         //增加敌人
         var enemy = new Role(this.collisionGroup, 200, 600, 0, 1);
         world.addBody(enemy);
-        //按键处理
-        // this.upControl.addEventListener(egret.TouchEvent.TOUCH_TAP,(event)=>{
-        // 	var gravity = p2.vec2.fromValues(0, 200);
-        // 	this.hero.applyForce(gravity, [0, 0]);
-        // }, this);
         //虚拟摇杆
         this.vj = new VirtualJoystick();
         this.vj.addEventListener("vj_start", this.onStart, this);

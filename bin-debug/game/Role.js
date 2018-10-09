@@ -64,6 +64,18 @@ var Role = (function (_super) {
             }, 2000);
         }
     };
+    //frame事件
+    Role.prototype.onEnterFrame = function (dt) {
+        if (this.velocity[0] > 0) {
+            this.displays[0].scaleX = -1;
+        }
+        else if (this.velocity[0] < 0) {
+            this.displays[0].scaleX = 1;
+        }
+        else {
+            //doNoting
+        }
+    };
     Role.prototype.autoAttack = function () {
         var forceX = Math.random() * 3 - 1.5;
         var forceY = Math.random() * 3 - 1.5;
