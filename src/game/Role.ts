@@ -64,12 +64,18 @@ class Role extends p2.Body {
 		}else{
 			//doNoting
 		}
+		//如果是敌人 去打你
+		if(this.roleType == 0){
+			this.autoAttack();
+		}
+			
 	}
 
 	autoAttack(){
-		var forceX = Math.random()*3 - 1.5;
-		var forceY = Math.random()*3 - 1.5; 
-		var gravity = p2.vec2.fromValues(forceX, forceY);
-		this.applyForce(gravity, [0, 0]);
+		if(this.position[1] < 4){
+			var forceY = Math.random()*100 +50; 
+			var gravity = p2.vec2.fromValues(0,  forceY);
+			this.applyForce(gravity, [0, 0]); 
+		}
 	}
 }
