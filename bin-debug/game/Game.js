@@ -101,7 +101,13 @@ var Game = (function (_super) {
         world.addBody(this.hero);
         this.hero.shapes[0].material = this.material2;
         //增加敌人
-        var enemy = new Role(this.collisionGroup, 200, 600, 0, 1);
+        var enemy = new Role(this.collisionGroup, 200, 600, 0, 1, this.hero);
+        world.addBody(enemy);
+        //增加敌人
+        var enemy = new Role(this.collisionGroup, 200, 100, 0, 1, this.hero);
+        world.addBody(enemy);
+        //增加敌人
+        var enemy = new Role(this.collisionGroup, 200, 400, 0, 1, this.hero);
         world.addBody(enemy);
         //虚拟摇杆
         this.vj = new VirtualJoystick();

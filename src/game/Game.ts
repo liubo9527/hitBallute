@@ -2,7 +2,7 @@ class Game extends eui.Component {
 	time = 0;
 	material1;
 	material2;
-	hero: p2.Body;
+	hero: Role;
 	collisionGroup:eui.Group;//碰撞层活动层
 	bgGroup:eui.Group;//背景层
 	vj:VirtualJoystick;//虚拟摇杆
@@ -106,7 +106,13 @@ class Game extends eui.Component {
 		world.addBody(this.hero);
 		this.hero.shapes[0].material = this.material2;
 		//增加敌人
-		var enemy = new Role(this.collisionGroup, 200, 600, 0, 1);
+		var enemy = new Role(this.collisionGroup, 200, 600, 0, 1, this.hero);
+		world.addBody(enemy);
+		//增加敌人
+		var enemy = new Role(this.collisionGroup, 200, 100, 0, 1, this.hero);
+		world.addBody(enemy);
+		//增加敌人
+		var enemy = new Role(this.collisionGroup, 200, 400, 0, 1, this.hero);
 		world.addBody(enemy);
 	
 		//虚拟摇杆

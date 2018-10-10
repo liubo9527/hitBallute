@@ -44,7 +44,6 @@ var Role = (function (_super) {
             this.group = config.gameGroup.PLAYER;
         }
         var display = this.createBitmapByName(displayName);
-        console.log(display.height);
         var p2Shape = new p2.Box({
             width: PhysicsTool.convertToPhysicsLength(display.width),
             height: PhysicsTool.convertToPhysicsLength(display.height)
@@ -54,14 +53,11 @@ var Role = (function (_super) {
         this.container.addChild(display);
         display.anchorOffsetX = display.width / 2;
         display.anchorOffsetY = display.height / 2;
+        //
         if (this.roleType == 0) {
             setInterval(function () {
-                if (_this.velocity[1] < 0) {
-                    var forceY = Math.random() * 50 + 50;
-                    var gravity = p2.vec2.fromValues(0, forceY);
-                    //this.applyForce(gravity, [0, 0]); 
-                }
-            }, 2000);
+                _this.autoAttack();
+            }, 100);
         }
     };
     //frame事件
@@ -76,15 +72,21 @@ var Role = (function (_super) {
             //doNoting
         }
         //如果是敌人 去打你
-        if (this.roleType == 0) {
-            this.autoAttack();
-        }
     };
     Role.prototype.autoAttack = function () {
-        if (this.position[1] < 4) {
+        if (this.position[1] < 2) {
             var forceY = Math.random() * 100 + 50;
             var gravity = p2.vec2.fromValues(0, forceY);
             this.applyForce(gravity, [0, 0]);
+        }
+        else {
+            var dx = this.hero.position[0] - this.position[0];
+            var dy = this.hero.position[1] - this.position[1];
+            var distance = global.Math.sqrt(dx * dx + dy * dy);
+            var kValue = 10;
+            var gravity = p2.vec2.fromValues(kValue * dx / distance, kValue * dy / distance);
+            this.applyForce(gravity, [0, 0]);
+            console.log("" + dx / distance + "" + dy / distance);
         }
     };
     return Role;
